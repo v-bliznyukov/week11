@@ -1,0 +1,13 @@
+Output of the first:
+Hello
+Hello
+
+Output of the second:
+Hello
+*2 spaces below*
+
+This happens due to the line buffering of the printf.
+In the first case string is printed to the buffer, and because one have't used "\n" (no new string), the string is still in the buffer.
+Then we use fork and it copies the buffer to the child process, adds "\n" and prints Hello\n 2 times.
+In the second case because we use "\n" we get to the next string and "Hello" is not in the buffer (in is flushed), 
+therefore, we execute only "\n" 2 times.
